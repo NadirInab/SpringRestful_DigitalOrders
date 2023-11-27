@@ -25,7 +25,7 @@ public class ContractServiceImpl implements ContractService{
 
     @Override
     public Contract save(Contract contract) {
-        if (contract.getDevis().getStatus().equals("accepted")) {
+        if (contract.getDevis().getDevisStatus().equals("accepted")) {
             return contractRepository.save(contract);
         } else {
             throw new RuntimeException("Devis not accepted");
