@@ -24,17 +24,15 @@ public class DevisServiceImpl implements DevisService{
         }
         devis.setDevisStatus(DevisStatus.PENDDING);
 
-        double dailyRentalCost = devis.getDemande().getEquipement().getDailyRentalCost();
-        int numberOfDays = calculateNumberOfDays(devis.getDemande().getStartDate(), devis.getDemande().getEndDate());
-        double totalCost = dailyRentalCost * numberOfDays;
-
-        devis.setCost(totalCost);
+        Date currentDate = Calendar.getInstance().getTime();
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
         calendar.add(Calendar.HOUR_OF_DAY, 48);
 
+        devis.setDateCreation(currentDate);
         devis.setDateExpiration(calendar.getTime());
+
         return devisRepository.save(devis);
     }
 

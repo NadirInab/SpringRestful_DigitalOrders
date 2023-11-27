@@ -22,16 +22,11 @@ public class Devis {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private DevisStatus devisStatus;
-    private Double cost;
 
     private Date dateCreation;
     private Date dateExpiration;
 
    @ManyToOne
     private Demande demande;
-
-    @OneToOne(mappedBy = "devis")
-    @PrimaryKeyJoinColumn
-    private Contract contract;
 
 }
