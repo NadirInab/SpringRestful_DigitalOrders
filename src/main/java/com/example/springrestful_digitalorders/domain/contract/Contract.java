@@ -1,6 +1,7 @@
 package com.example.springrestful_digitalorders.domain.contract;
 
 
+import com.example.springrestful_digitalorders.domain.devis.Devis;
 import jakarta.persistence.*;
 
 import java.util.Date;
