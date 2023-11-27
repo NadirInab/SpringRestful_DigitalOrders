@@ -1,4 +1,8 @@
 package com.example.springrestful_digitalorders.domain.equipement;
 
-public interface EquipementRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface EquipementRepository extends JpaRepository<Equipement, Long> {
 }
