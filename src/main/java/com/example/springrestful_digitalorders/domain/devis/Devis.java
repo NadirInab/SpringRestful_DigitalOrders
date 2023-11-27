@@ -1,11 +1,14 @@
 package com.example.springrestful_digitalorders.domain.devis;
 
 
+import com.example.springrestful_digitalorders.domain.demande.Demande;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.Date;
 
 @Entity
 @Data
@@ -20,7 +23,10 @@ public class Devis {
     private DevisStatus devisStatus;
     private Double cost;
 
-   /* @ManyToOne
-    private Demande demande;*/
+    private Date dateCreation;
+    private Date dateExpiration;
+
+   @ManyToOne
+    private Demande demande;
 
 }
