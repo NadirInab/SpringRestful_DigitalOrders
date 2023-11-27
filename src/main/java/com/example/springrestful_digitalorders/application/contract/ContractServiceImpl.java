@@ -2,11 +2,13 @@ package com.example.springrestful_digitalorders.application.contract;
 
 import com.example.springrestful_digitalorders.domain.contract.Contract;
 import com.example.springrestful_digitalorders.domain.contract.ContractRepository;
+import com.example.springrestful_digitalorders.domain.devis.DevisStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 
 @Component
 @RequiredArgsConstructor
@@ -25,7 +27,7 @@ public class ContractServiceImpl implements ContractService{
 
     @Override
     public Contract save(Contract contract) {
-        if (contract.getDevis().getDevisStatus().equals("accepted")) {
+        if (contract.getDevis().getDevisStatus().equals(DevisStatus.ACCEPTED)) {
             return contractRepository.save(contract);
         } else {
             throw new RuntimeException("Devis not accepted");
