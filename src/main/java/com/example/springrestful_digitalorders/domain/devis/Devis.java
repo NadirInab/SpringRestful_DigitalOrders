@@ -1,6 +1,7 @@
 package com.example.springrestful_digitalorders.domain.devis;
 
 
+import com.example.springrestful_digitalorders.domain.contract.Contract;
 import com.example.springrestful_digitalorders.domain.demande.Demande;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -28,5 +29,9 @@ public class Devis {
 
    @ManyToOne
     private Demande demande;
+
+    @OneToOne(mappedBy = "devis")
+    @PrimaryKeyJoinColumn
+    private Contract contract;
 
 }

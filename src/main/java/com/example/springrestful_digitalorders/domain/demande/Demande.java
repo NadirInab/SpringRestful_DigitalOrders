@@ -1,10 +1,15 @@
 package com.example.springrestful_digitalorders.domain.demande;
 
+import com.example.springrestful_digitalorders.domain.equipement.Equipement;
+import com.example.springrestful_digitalorders.domain.user.User;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+
+import java.util.Date;
 
 @Entity
 @Data
@@ -15,13 +20,22 @@ public class Demande {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull(message = "Name cannot be null")
-    @NotBlank(message = "Name cannot be blank")
-    private String name ;
+    @Column(name = "start_date" )
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date startDate;
 
-    @NotNull(message = "dailyRentalCost cannot be null")
-    @Column(name = "daily_rental_cost")
-    private Double dailyRentalCost;
+
+    @Column(name = "end_date" )
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date endDate;
+
+    private Date createdAt;
 
     private DemandeStatus demandeStatus;
+
+    @ManyToOne
+    private User user;
+
+    @ManyToOne
+    private Equipement equipement;
 }
