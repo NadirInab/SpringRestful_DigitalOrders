@@ -3,11 +3,13 @@ package com.example.springrestful_digitalorders.application.devis;
 import com.example.springrestful_digitalorders.domain.demande.DemandeStatus;
 import com.example.springrestful_digitalorders.domain.devis.Devis;
 import com.example.springrestful_digitalorders.domain.devis.DevisRepository;
+import com.example.springrestful_digitalorders.domain.devis.DevisStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 @Component
 @RequiredArgsConstructor
@@ -15,15 +17,38 @@ public class DevisServiceImpl implements DevisService{
 
     DevisRepository devisRepository;
     @Override
-    public Devis generateDevis(Devis devis) {
+    public Devis addDevis(Devis devis) {
+
         if (devis.getDemande().getDemandeStatus() != DemandeStatus.ACCEPTED) {
             throw new IllegalArgumentException("This request is not accepted");
         }
+        devis.setDevisStatus(DevisStatus.PENDDING);
+
+        double dailyRentalCost = devis.getDemande().getEquipement().getDailyRentalCost();
+        int numberOfDays = calculateNumberOfDays(devis.getDemande().getStartDate(), devis.getDemande().getEndDate());
+        double totalCost = dailyRentalCost * numberOfDays;
+
+        devis.setCost(totalCost);
+
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
         calendar.add(Calendar.HOUR_OF_DAY, 48);
 
         devis.setDateExpiration(calendar.getTime());
         return devisRepository.save(devis);
+    }
+
+    @Override
+    public List<Devis> findAll() {
+        return devisRepository.findAll();
+    }
+
+
+    private int calculateNumberOfDays(Date startDate, Date endDate) {
+        long timeDifference = endDate.getTime() - startDate.getTime();
+
+        int daysDifference = (int) (timeDifference / (1000 * 60 * 60 * 24));
+
+        return daysDifference;
     }
 }
