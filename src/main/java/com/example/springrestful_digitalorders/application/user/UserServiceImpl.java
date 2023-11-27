@@ -1,17 +1,17 @@
 package com.example.springrestful_digitalorders.application.user;
 
 import com.example.springrestful_digitalorders.domain.user.User;
+import com.example.springrestful_digitalorders.domain.user.UserDto;
 import com.example.springrestful_digitalorders.domain.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
-public class UserServiceImpl {
+public class UserServiceImpl  implements UserService{
 
     private final UserRepository userRepository ;
 
@@ -23,8 +23,12 @@ public class UserServiceImpl {
         return userRepository.findAll();
     }
 
-    public User findById(Long id) {
+    public UserDto findById(Long id) {
         Optional<User> optionalUser = userRepository.findById(id);
-        return optionalUser.orElse(null);
+            if(optionalUser.isPresent()){
+                return UserDto.toDto(optionalUser.get()) ;
+            }else{
+                return null ;
+            }
     }
 }
