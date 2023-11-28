@@ -46,4 +46,18 @@ public class ContractServiceImpl implements ContractService{
     public Contract update(Contract contract) {
         return contractRepository.save(contract);
     }
+
+    public List<Contract> getActiveContracts() {
+        return contractRepository.findActiveContracts();
+    }
+
+    public List<Contract> getArchivedContracts() {
+        return contractRepository.findArchivedContracts();
+    }
+
+    public Contract archiveContract(Long id) {
+        Contract contract = contractRepository.findById(id).orElseThrow(() -> new RuntimeException("Contract not found"));
+        contract.setArchived(true);
+        return contractRepository.save(contract);
+    }
 }

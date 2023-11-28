@@ -14,4 +14,8 @@ public interface ContractService{
     public void deleteById(Long id);
     public void delete(Contract contract);
     public Contract update(Contract contract);
+
+    public List<Contract> getActiveContracts();
+    public List<Contract> getArchivedContracts();
+    public Contract archiveContract(Long id);
 }
