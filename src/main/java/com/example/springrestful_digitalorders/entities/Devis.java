@@ -27,6 +27,8 @@ public class Devis {
 
     private Double discount;
 
+    private Boolean isArchived;
+
    @ManyToOne
     private Demande demande;
 

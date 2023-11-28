@@ -1,5 +1,6 @@
-package com.example.springrestful_digitalorders.Services;
+package com.example.springrestful_digitalorders.Services.impl;
 
+import com.example.springrestful_digitalorders.Services.EquipementService;
 import com.example.springrestful_digitalorders.entities.Equipement;
 import com.example.springrestful_digitalorders.Repositories.EquipementRepository;
 import lombok.RequiredArgsConstructor;

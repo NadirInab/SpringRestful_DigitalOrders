@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import com.example.springrestful_digitalorders.entities.Devis;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public interface DevisService {
@@ -12,4 +13,5 @@ public interface DevisService {
     public List<Devis> findAll();
 
 
+    public Map<String, String> showDevis(Devis devis);
 }

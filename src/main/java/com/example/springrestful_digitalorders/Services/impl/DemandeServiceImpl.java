@@ -1,5 +1,6 @@
-package com.example.springrestful_digitalorders.Services;
+package com.example.springrestful_digitalorders.Services.impl;
 
+import com.example.springrestful_digitalorders.Services.DemandeService;
 import com.example.springrestful_digitalorders.entities.Demande;
 import com.example.springrestful_digitalorders.Repositories.DemandeRepository;
 import com.example.springrestful_digitalorders.entities.Equipement;
