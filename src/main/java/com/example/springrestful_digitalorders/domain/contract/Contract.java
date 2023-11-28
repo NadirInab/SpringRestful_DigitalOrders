@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -26,6 +27,5 @@ private Long id;
 
     @Temporal(TemporalType.DATE)
     private Date endDate;
-
 }
 
