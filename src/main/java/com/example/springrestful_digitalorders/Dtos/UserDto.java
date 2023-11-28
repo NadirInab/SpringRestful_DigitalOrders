@@ -3,6 +3,7 @@ package com.example.springrestful_digitalorders.Dtos;
 
 import com.example.springrestful_digitalorders.entities.User;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,6 +16,7 @@ import lombok.NoArgsConstructor;
 @Builder
 
 public class UserDto {
+    @Id
     private Long id;
     private String fullName;
     private boolean isAdmin;
