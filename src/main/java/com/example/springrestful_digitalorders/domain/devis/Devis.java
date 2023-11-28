@@ -21,10 +21,13 @@ public class Devis {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private DevisStatus devisStatus;
 
     private Date dateCreation;
     private Date dateExpiration;
+
+    private Double discount;
 
    @ManyToOne
     private Demande demande;
