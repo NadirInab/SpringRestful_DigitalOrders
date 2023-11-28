@@ -55,4 +55,8 @@ public class ContractControllerImpl implements ContractController {
     public List<Contract> getArchivedContracts() {
         return contractService.getArchivedContracts();
     }
+    @PutMapping("/archive/{id}")
+    public Contract archiveContract(@PathVariable Long id) {
+        return contractService.archiveContract(id);
+    }
 }

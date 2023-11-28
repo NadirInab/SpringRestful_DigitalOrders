@@ -21,10 +21,6 @@ private Long id;
     @OneToOne
     private Devis devis;
 
-    @Temporal(TemporalType.DATE)
-    private Date startDate;
-
-    @Temporal(TemporalType.DATE)
-    private Date endDate;
+    private Boolean isArchived;
 }
 
