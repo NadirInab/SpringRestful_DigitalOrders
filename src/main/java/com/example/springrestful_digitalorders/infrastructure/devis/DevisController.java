@@ -10,7 +10,6 @@ public interface DevisController {
 
     public ResponseEntity<Devis> generateDevis(@RequestBody Devis devis);
 
-
     public List<Devis> findAll();
 
 }

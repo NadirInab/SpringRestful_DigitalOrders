@@ -32,7 +32,7 @@ public class EquipementControllerImpl {
         return equipementService.findAll();
     }
 
-    @GetMapping("/{name}/{uuid}")
+    @GetMapping("/{name}")
     public Equipement getEquipementByNameAndUuid(@PathVariable String name) {
         return equipementService.findByName(name);
     }
