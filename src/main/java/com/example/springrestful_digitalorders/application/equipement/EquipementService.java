@@ -13,5 +13,5 @@ public interface EquipementService {
 
     public List<Equipement> findAll();
 
-    public Equipement findByNameAndUuid(String name, UUID uuid);
+    public Equipement findByName(String name);
 }

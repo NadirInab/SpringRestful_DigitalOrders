@@ -2,6 +2,7 @@ package com.example.springrestful_digitalorders.application.contract;
 
 import com.example.springrestful_digitalorders.domain.contract.Contract;
 import com.example.springrestful_digitalorders.domain.contract.ContractRepository;
+import com.example.springrestful_digitalorders.domain.devis.Devis;
 import com.example.springrestful_digitalorders.domain.devis.DevisStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -47,5 +48,13 @@ public class ContractServiceImpl implements ContractService{
     @Override
     public Contract update(Contract contract) {
         return contractRepository.save(contract);
+    }
+
+    public List<Contract> getActiveContracts() {
+        return contractRepository.findActiveContracts();
+    }
+
+    public List<Contract> getArchivedContracts() {
+        return contractRepository.findArchivedContracts();
     }
 }

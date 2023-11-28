@@ -20,45 +20,39 @@ public class ContractControllerImpl implements ContractController{
             this.contractService = contractService;
         }
 
-        @GetMapping
-        public ResponseEntity<List<Contract>> getAllContracts() {
-            List<Contract> contracts = contractService.findAll();
-            return new ResponseEntity<>(contracts, HttpStatus.OK);
-        }
+    @GetMapping
+    public List<Contract> getAllContracts() {
+        return contractService.findAll();
+    }
 
-        @GetMapping("/{id}")
-        public ResponseEntity<Contract> getContractById(@PathVariable Long id) {
-            try {
-                Contract contract = contractService.findById(id);
-                return new ResponseEntity<>(contract, HttpStatus.OK);
-            } catch (RuntimeException e) {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            }
-        }
+    @GetMapping("/{id}")
+    public Contract getContractById(@PathVariable Long id) {
+        return contractService.findById(id);
+    }
 
-        @PostMapping
-        public ResponseEntity<?> createContract(@RequestBody Contract contract) {
-            try {
-                Contract savedContract = contractService.save(contract);
-                return new ResponseEntity<>(savedContract, HttpStatus.CREATED);
-            } catch (RuntimeException e) {
-                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-            }
-        }
+    @PostMapping
+    public Contract createContract(@RequestBody Contract contract) {
+        return contractService.save(contract);
+    }
 
-        @PutMapping("/{id}")
-        public ResponseEntity<?> updateContract(@PathVariable Long id, @RequestBody Contract contract) {
-            try {
-                Contract updatedContract = contractService.update(contract);
-                return new ResponseEntity<>(updatedContract, HttpStatus.OK);
-            } catch (RuntimeException e) {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            }
-        }
+    @PutMapping("/{id}")
+    public Contract updateContract(@PathVariable Long id, @RequestBody Contract contract) {
+        return contractService.update(contract);
+    }
 
-        @DeleteMapping("/{id}")
-        public ResponseEntity<Void> deleteContract(@PathVariable Long id) {
-            contractService.deleteById(id);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteContract(@PathVariable Long id) {
+        contractService.deleteById(id);
+    }
+
+    @GetMapping("/active")
+    public List<Contract> getActiveContracts() {
+        return contractService.getActiveContracts();
+    }
+
+    @GetMapping("/archived")
+    public List<Contract> getArchivedContracts() {
+        return contractService.getArchivedContracts();
+    }
 }

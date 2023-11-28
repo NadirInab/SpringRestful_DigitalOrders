@@ -33,3 +33,4 @@ build/
 .vscode/
 
 *.personalNotes
+src/main/resources/application.properties

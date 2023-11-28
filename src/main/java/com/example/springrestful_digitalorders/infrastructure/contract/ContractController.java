@@ -8,9 +8,12 @@ import java.util.List;
 
 @Controller
 public interface ContractController {
-    public ResponseEntity<List<Contract>> getAllContracts();
-    public ResponseEntity<Contract> getContractById(Long id);
-    public ResponseEntity<?> createContract(Contract contract);
-    public ResponseEntity<?> updateContract(Long id, Contract contract);
-    public ResponseEntity<Void> deleteContract(Long id);
+    public List<Contract> getAllContracts();
+    public Contract getContractById(Long id);
+    public Contract createContract(Contract contract);
+    public Contract updateContract(Long id, Contract contract);
+    public void deleteContract(Long id);
+
+    public List<Contract> getActiveContracts();
+    public List<Contract> getArchivedContracts();
 }
