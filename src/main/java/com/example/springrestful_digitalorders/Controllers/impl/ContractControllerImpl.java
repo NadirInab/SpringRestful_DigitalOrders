@@ -1,5 +1,6 @@
-package com.example.springrestful_digitalorders.Controllers;
+package com.example.springrestful_digitalorders.Controllers.impl;
 
+import com.example.springrestful_digitalorders.Controllers.ContractController;
 import com.example.springrestful_digitalorders.Services.ContractService;
 import com.example.springrestful_digitalorders.entities.Contract;
 import org.springframework.beans.factory.annotation.Autowired;

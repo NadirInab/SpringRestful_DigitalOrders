@@ -3,20 +3,18 @@
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
-                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.24.xsd"
-        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
-    <changeSet id="1701126593594-1" author="yases (generated)">
-        <createTable tableName="contract">
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.24.xsd"        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+<changeSet id="1701206939049-1" author="yases (generated)">
+<createTable tableName="contract">
             <column name="id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_contract"/>
             </column>
             <column name="devis_id" type="BIGINT"/>
-            <column name="start_date" type="DATE"/>
-            <column name="end_date" type="DATE"/>
+            <column name="is_archived" type="BOOLEAN"/>
         </createTable>
-    </changeSet>
-    <changeSet id="1701126593594-2" author="yases (generated)">
-        <createTable tableName="demande">
+</changeSet>
+<changeSet id="1701206939049-2" author="yases (generated)">
+<createTable tableName="demande">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_demande"/>
             </column>
@@ -27,20 +25,22 @@
             <column name="user_id" type="BIGINT"/>
             <column name="equipement_id" type="BIGINT"/>
         </createTable>
-    </changeSet>
-    <changeSet id="1701126593594-3" author="yases (generated)">
-        <createTable tableName="devis">
+</changeSet>
+<changeSet id="1701206939049-3" author="yases (generated)">
+<createTable tableName="devis">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_devis"/>
             </column>
             <column name="devis_status" type="SMALLINT"/>
             <column name="date_creation" type="DATETIME"/>
             <column name="date_expiration" type="DATETIME"/>
+            <column name="discount" type="DOUBLE"/>
+            <column name="is_archived" type="BOOLEAN"/>
             <column name="demande_id" type="BIGINT"/>
         </createTable>
-    </changeSet>
-    <changeSet id="1701126593594-4" author="yases (generated)">
-        <createTable tableName="equipement">
+</changeSet>
+<changeSet id="1701206939049-4" author="yases (generated)">
+<createTable tableName="equipement">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_equipement"/>
             </column>
@@ -50,36 +50,33 @@
             <column name="daily_rental_cost" type="DOUBLE">
                 <constraints nullable="false"/>
             </column>
+            <column name="picture" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
             <column name="uuid" type="binary(16)"/>
             <column name="status" type="SMALLINT"/>
         </createTable>
-    </changeSet>
-    <changeSet id="1701126593594-5" author="yases (generated)">
-        <createTable tableName="user">
+</changeSet>
+<changeSet id="1701206939049-5" author="yases (generated)">
+<createTable tableName="user">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_user"/>
             </column>
             <column name="full_name" type="VARCHAR(255)"/>
             <column name="is_admin" type="BOOLEAN"/>
         </createTable>
-    </changeSet>
-    <changeSet id="1701126593594-6" author="yases (generated)">
-        <addForeignKeyConstraint baseColumnNames="devis_id" baseTableName="contract"
-                                 constraintName="FK_CONTRACT_ON_DEVIS" referencedColumnNames="id"
-                                 referencedTableName="devis"/>
-    </changeSet>
-    <changeSet id="1701126593594-7" author="yases (generated)">
-        <addForeignKeyConstraint baseColumnNames="equipement_id" baseTableName="demande"
-                                 constraintName="FK_DEMANDE_ON_EQUIPEMENT" referencedColumnNames="id"
-                                 referencedTableName="equipement"/>
-    </changeSet>
-    <changeSet id="1701126593594-8" author="yases (generated)">
-        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="demande" constraintName="FK_DEMANDE_ON_USER"
-                                 referencedColumnNames="id" referencedTableName="user"/>
-    </changeSet>
-    <changeSet id="1701126593594-9" author="yases (generated)">
-        <addForeignKeyConstraint baseColumnNames="demande_id" baseTableName="devis" constraintName="FK_DEVIS_ON_DEMANDE"
-                                 referencedColumnNames="id" referencedTableName="demande"/>
-    </changeSet>
+</changeSet>
+<changeSet id="1701206939049-6" author="yases (generated)">
+<addForeignKeyConstraint baseColumnNames="devis_id" baseTableName="contract" constraintName="FK_CONTRACT_ON_DEVIS" referencedColumnNames="id" referencedTableName="devis"/>
+</changeSet>
+<changeSet id="1701206939049-7" author="yases (generated)">
+<addForeignKeyConstraint baseColumnNames="equipement_id" baseTableName="demande" constraintName="FK_DEMANDE_ON_EQUIPEMENT" referencedColumnNames="id" referencedTableName="equipement"/>
+</changeSet>
+<changeSet id="1701206939049-8" author="yases (generated)">
+<addForeignKeyConstraint baseColumnNames="user_id" baseTableName="demande" constraintName="FK_DEMANDE_ON_USER" referencedColumnNames="id" referencedTableName="user"/>
+</changeSet>
+<changeSet id="1701206939049-9" author="yases (generated)">
+<addForeignKeyConstraint baseColumnNames="demande_id" baseTableName="devis" constraintName="FK_DEVIS_ON_DEMANDE" referencedColumnNames="id" referencedTableName="demande"/>
+</changeSet>
 
 </databaseChangeLog>

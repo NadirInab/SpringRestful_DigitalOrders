@@ -1,5 +1,6 @@
-package com.example.springrestful_digitalorders.Controllers;
+package com.example.springrestful_digitalorders.Controllers.impl;
 
+import com.example.springrestful_digitalorders.Controllers.DevisController;
 import com.example.springrestful_digitalorders.Services.DevisService;
 import com.example.springrestful_digitalorders.entities.Devis;
 import lombok.RequiredArgsConstructor;
@@ -8,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RequiredArgsConstructor
 @RestController
@@ -30,6 +32,11 @@ public class DevisControllerImpl implements DevisController {
     @GetMapping("/")
     public List<Devis> findAll() {
         return devisService.findAll();
+    }
+
+    @GetMapping("/showAll")
+    public Map<String, String> showDevis(@RequestBody Devis devis){
+        return devisService.showDevis(devis);
     }
 
 }

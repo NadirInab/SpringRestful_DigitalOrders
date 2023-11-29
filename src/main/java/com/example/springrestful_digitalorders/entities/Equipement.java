@@ -30,6 +30,10 @@ public class Equipement {
     @Column(name = "daily_rental_cost")
     private Double dailyRentalCost;
 
+    @NotNull(message = "picture cannot be null")
+    @NotBlank(message = "picture cannot be blank")
+    private String picture;
+
     private UUID uuid;
 
     private EquipementStatus status;
