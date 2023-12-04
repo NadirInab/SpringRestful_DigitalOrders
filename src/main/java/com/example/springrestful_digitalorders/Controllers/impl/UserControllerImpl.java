@@ -1,5 +1,6 @@
-package com.example.springrestful_digitalorders.Controllers;
+package com.example.springrestful_digitalorders.Controllers.impl;
 
+import com.example.springrestful_digitalorders.Controllers.UserController;
 import com.example.springrestful_digitalorders.Services.UserService;
 import com.example.springrestful_digitalorders.entities.User;
 import com.example.springrestful_digitalorders.Dtos.UserDto;

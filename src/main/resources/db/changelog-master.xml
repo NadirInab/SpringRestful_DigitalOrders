@@ -7,6 +7,5 @@
         objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
 
     <include file="db/changelog/28-01-changelog.xml"/>
-    <include file="db/changelog/29-11-changelog.xml"/>
     <include file="db/changelog/2023/12/04-01-changelog.xml"/>
 </databaseChangeLog>

@@ -1,5 +1,6 @@
-package com.example.springrestful_digitalorders.Services;
+package com.example.springrestful_digitalorders.Services.impl;
 
+import com.example.springrestful_digitalorders.Services.UserService;
 import com.example.springrestful_digitalorders.entities.User;
 import com.example.springrestful_digitalorders.Dtos.UserDto;
 import com.example.springrestful_digitalorders.Repositories.UserRepository;

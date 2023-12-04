@@ -1,5 +1,6 @@
-package com.example.springrestful_digitalorders.Services;
+package com.example.springrestful_digitalorders.Services.impl;
 
+import com.example.springrestful_digitalorders.Services.ContractService;
 import com.example.springrestful_digitalorders.entities.Contract;
 import com.example.springrestful_digitalorders.Repositories.ContractRepository;
 import com.example.springrestful_digitalorders.entities.DevisStatus;

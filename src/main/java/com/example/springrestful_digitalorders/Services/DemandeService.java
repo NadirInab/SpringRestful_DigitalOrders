@@ -12,8 +12,10 @@ public interface DemandeService {
     public List<Equipement> findAll() ;
     public Equipement findById(Long id) ;
 
-    //public Demande save(Demande demande);
+    public Demande save(Demande demande);
 
     public void deleteById(Long id);
     public void delete(Demande demande);
+
+    List<Demande> getPendingDemands();
 }
