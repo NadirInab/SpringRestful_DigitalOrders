@@ -1,7 +1,9 @@
 package com.example.springrestful_digitalorders.Controllers;
 
+import com.example.springrestful_digitalorders.Repositories.DevisRepository;
 import com.example.springrestful_digitalorders.entities.Contract;
 import com.example.springrestful_digitalorders.entities.Devis;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -15,14 +17,12 @@ import com.example.springrestful_digitalorders.Services.PdfGenerationService;
 
 @RestController
 @RequestMapping("/api/pdf")
+@RequiredArgsConstructor
 public class PdfController {
 
     private final PdfGenerationService pdfGenerationService;
+    private final DevisRepository devisRepository;
 
-    @Autowired
-    public PdfController(PdfGenerationService pdfGenerationService) {
-        this.pdfGenerationService = pdfGenerationService;
-    }
 
     @GetMapping(value = "/contract/{id}", produces = MediaType.APPLICATION_PDF_VALUE)
     public ResponseEntity<byte[]> generateContractPdf(@PathVariable Long id) {
@@ -36,7 +36,8 @@ public class PdfController {
 
     @GetMapping(value = "/devis/{id}", produces = MediaType.APPLICATION_PDF_VALUE)
     public ResponseEntity<byte[]> generateDevisPdf(@PathVariable Long id) {
-        Devis devis = new Devis();
+
+        Devis devis = devisRepository.findById(id).get();
         byte[] pdfBytes = pdfGenerationService.generateDevisPdf(devis);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_PDF);

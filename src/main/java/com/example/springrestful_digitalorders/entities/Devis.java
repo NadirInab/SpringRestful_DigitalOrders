@@ -1,6 +1,7 @@
 package com.example.springrestful_digitalorders.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+
 
 @Entity
 @Data
@@ -22,7 +24,10 @@ public class Devis {
 
     private DevisStatus devisStatus;
 
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date dateCreation;
+
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date dateExpiration;
 
     private Double discount;
