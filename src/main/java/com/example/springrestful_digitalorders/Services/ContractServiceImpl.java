@@ -26,6 +26,7 @@ public class ContractServiceImpl implements ContractService {
 
     @Override
     public Contract save(Contract contract) {
+        System.out.println(contract.getDevis().getDevisStatus());
         if (contract.getDevis().getDevisStatus().equals(DevisStatus.ACCEPTED)) {
             return contractRepository.save(contract);
         } else {
@@ -59,6 +60,12 @@ public class ContractServiceImpl implements ContractService {
     public Contract archiveContract(Long id) {
         Contract contract = contractRepository.findById(id).orElseThrow(() -> new RuntimeException("Contract not found"));
         contract.setIsArchived(true);
+        return contractRepository.save(contract);
+    }
+
+    public Contract activateContract(Long id) {
+        Contract contract = contractRepository.findById(id).orElseThrow(() -> new RuntimeException("Contract not found"));
+        contract.setIsArchived(false);
         return contractRepository.save(contract);
     }
 }

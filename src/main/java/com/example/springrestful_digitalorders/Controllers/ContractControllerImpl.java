@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/contracts")
+@RequestMapping("/api/contracts")
 public class ContractControllerImpl implements ContractController {
 
         private final ContractService contractService;
@@ -30,6 +30,7 @@ public class ContractControllerImpl implements ContractController {
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public Contract createContract(@RequestBody Contract contract) {
         return contractService.save(contract);
     }
@@ -57,5 +58,10 @@ public class ContractControllerImpl implements ContractController {
     @PutMapping("/archive/{id}")
     public Contract archiveContract(@PathVariable Long id) {
         return contractService.archiveContract(id);
+    }
+    // make active contract
+    @PutMapping("/activate/{id}")
+    public Contract activateContract(@PathVariable Long id) {
+        return contractService.activateContract(id);
     }
 }

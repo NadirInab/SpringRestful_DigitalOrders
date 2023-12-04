@@ -16,4 +16,6 @@ public interface ContractController {
     public List<Contract> getActiveContracts();
     public List<Contract> getArchivedContracts();
     public Contract archiveContract(Long id);
+
+    public Contract activateContract(Long id);
 }
