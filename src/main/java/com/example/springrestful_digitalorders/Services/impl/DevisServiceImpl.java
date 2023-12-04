@@ -14,7 +14,7 @@ import java.util.*;
 @RequiredArgsConstructor
 public class DevisServiceImpl implements DevisService {
 
-    DevisRepository devisRepository;
+    private final DevisRepository devisRepository;
 
     @Override
     public Devis addDevis(Devis devis) {
@@ -43,9 +43,11 @@ public class DevisServiceImpl implements DevisService {
     }
 
 
-    public void updateDevis(Devis devis) {
-        Discount(devis);
-        devisRepository.save(devis);
+    public Devis updateDevis(Long id,Double discount) {
+        Devis devis1 = devisRepository.findById(id).get();
+        devis1.setDiscount(discount);
+        Discount(devis1);
+        return devisRepository.save(devis1);
     }
 
 
@@ -65,12 +67,15 @@ public class DevisServiceImpl implements DevisService {
         }
     }
 
-    public Map<String, String> showDevis(Devis devis) {
+    public Map<String, String> showDevis(Long id) {
+
+        Devis devis = devisRepository.findById(id).get();
+
         Map<String, String> devis1 = new HashMap<>();
 
         Double price = devis.getDemande().getEquipement().getDailyRentalCost();
         Double discount = devis.getDiscount();
-        Double priceAfter = discount == 0 ? price : (price * discount) / 100;
+        Double priceAfter = discount == 0 ? price : (price)-(price * discount) / 100;
 
         devis1.put("id", devis.getId().toString());
         devis1.put("Equipement", devis.getDemande().getEquipement().getName());
@@ -80,6 +85,13 @@ public class DevisServiceImpl implements DevisService {
         devis1.put("New price", priceAfter.toString());
 
         return devis1;
+    }
+
+    public Devis updateStatus(Long id ,DevisStatus devisStatus) {
+        Devis devis = devisRepository.findById(id).get();
+        devis.setDevisStatus(devisStatus);
+        devisRepository.save(devis);
+        return devisRepository.save(devis);
     }
 
 

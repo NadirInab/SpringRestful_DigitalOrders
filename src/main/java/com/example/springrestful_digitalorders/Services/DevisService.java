@@ -1,5 +1,6 @@
 package com.example.springrestful_digitalorders.Services;
 
+import com.example.springrestful_digitalorders.entities.DevisStatus;
 import org.springframework.stereotype.Service;
 import com.example.springrestful_digitalorders.entities.Devis;
 
@@ -13,5 +14,9 @@ public interface DevisService {
     public List<Devis> findAll();
 
 
-    public Map<String, String> showDevis(Devis devis);
+    public Map<String, String> showDevis(Long id);
+
+    public Devis updateStatus(Long id , DevisStatus devisStatus);
+
+    public Devis updateDevis(Long id, Double discount);
 }
