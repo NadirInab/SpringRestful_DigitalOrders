@@ -60,7 +60,6 @@ public class ContractControllerImpl implements ContractController {
     public Contract archiveContract(@PathVariable Long id) {
         return contractService.archiveContract(id);
     }
-    // make active contract
     @PutMapping("/activate/{id}")
     public Contract activateContract(@PathVariable Long id) {
         return contractService.activateContract(id);
