@@ -1,9 +1,7 @@
 package com.example.springrestful_digitalorders.Services;
 
 import com.example.springrestful_digitalorders.entities.Contract;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.draw.LineSeparator;
 import org.springframework.stereotype.Service;
@@ -15,11 +13,16 @@ import com.example.springrestful_digitalorders.entities.Devis;
 public class PdfGenerationService {
 
     public byte[] generateContractPdf(Contract contract) {
+
+
         return generatePdf(document -> {
             try {
-                document.add(new Paragraph("Contract ID: " + contract.getId()));
-                document.add(new Paragraph("Devis ID: " + contract.getDevis().getId()));
-                document.add(new Paragraph("Is Archived: " + contract.getIsArchived()));
+                Font titleFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 18);
+                Font normalFont = FontFactory.getFont(FontFactory.HELVETICA, 12);
+                Font boldFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12);
+                document.add(new Paragraph("Contract ID: " + contract.getId(), titleFont));
+                document.add(new Paragraph("Devis ID: " + contract.getDevis().getId(), boldFont));
+                document.add(new Paragraph("Is Archived: " + contract.getIsArchived(), normalFont));
             } catch (DocumentException e) {
                 throw new RuntimeException("Error adding content to PDF", e);
             }
