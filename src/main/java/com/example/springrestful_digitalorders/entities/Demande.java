@@ -1,6 +1,7 @@
 package com.example.springrestful_digitalorders.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.example.springrestful_digitalorders.entities.DemandeStatus ;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,6 +28,8 @@ public class Demande {
 
     private Date createdAt;
 
+    @Enumerated(EnumType.ORDINAL)
+    @Column(name = "demande_status")
     private DemandeStatus demandeStatus;
 
     @ManyToOne

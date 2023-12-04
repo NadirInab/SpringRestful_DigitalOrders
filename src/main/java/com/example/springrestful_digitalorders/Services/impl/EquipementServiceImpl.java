@@ -5,11 +5,12 @@ import com.example.springrestful_digitalorders.entities.Equipement;
 import com.example.springrestful_digitalorders.Repositories.EquipementRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 
-@Component
+@Service
 @RequiredArgsConstructor
 public class EquipementServiceImpl implements EquipementService {
 
