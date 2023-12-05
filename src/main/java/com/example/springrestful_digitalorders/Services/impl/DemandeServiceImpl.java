@@ -1,10 +1,9 @@
 package com.example.springrestful_digitalorders.Services.impl;
 
 import com.example.springrestful_digitalorders.Services.DemandeService;
-import com.example.springrestful_digitalorders.entities.Demande;
+import com.example.springrestful_digitalorders.Services.DevisService;
+import com.example.springrestful_digitalorders.entities.*;
 import com.example.springrestful_digitalorders.Repositories.DemandeRepository;
-import com.example.springrestful_digitalorders.entities.DemandeStatus;
-import com.example.springrestful_digitalorders.entities.Equipement;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,19 +17,17 @@ import java.util.List;
 public class DemandeServiceImpl  implements DemandeService {
 
 
-    private  DemandeRepository demandeRepository;
-    @Autowired
-    public DemandeServiceImpl(DemandeRepository demandeRepository) {
-        this.demandeRepository = demandeRepository;
-    }
+    private  final DemandeRepository demandeRepository;
+
+    private final DevisService devisService;
     @Override
-    public List<Equipement> findAll() {
+    public List<Demande> findAll() {
         return demandeRepository.findAll();
     }
 
     @Override
-    public Equipement findById(Long id) {
-        return demandeRepository.findById(Math.toIntExact(id)).orElseThrow(() -> new RuntimeException("demande not found"));
+    public Demande findById(Long id) {
+        return demandeRepository.findById(id).orElseThrow(() -> new RuntimeException("demande not found"));
     }
     @Override
    public Demande save(Demande demande) {
@@ -39,12 +36,12 @@ public class DemandeServiceImpl  implements DemandeService {
 
     @Override
     public void deleteById(Long id) {
-        demandeRepository.deleteById(Math.toIntExact(id));
+        demandeRepository.deleteById(id);
     }
 
     @Override
     public void delete(Demande demande) {
-        demandeRepository.delete(demande.getEquipement());
+        demandeRepository.delete(demande);
     }
 
     @Override
@@ -58,4 +55,16 @@ public class DemandeServiceImpl  implements DemandeService {
 
         return demandeRepository.findByDemandeStatusIn(pendingStatuses);
     }
+
+    @Override
+    public Devis updateDemandeStatus(Long id, DemandeStatus demandeStatus) {
+        Demande demande = demandeRepository.findById(id).get();
+        demande.setDemandeStatus(demandeStatus);
+        demandeRepository.save(demande);
+        return devisService.addDevis(demande);
+
+    }
+
+
+
 }
