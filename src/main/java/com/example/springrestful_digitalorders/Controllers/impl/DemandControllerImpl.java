@@ -2,8 +2,7 @@ package com.example.springrestful_digitalorders.Controllers.impl;
 
 
 import com.example.springrestful_digitalorders.Services.DemandeService;
-import com.example.springrestful_digitalorders.entities.Demande;
-import com.example.springrestful_digitalorders.entities.Equipement;
+import com.example.springrestful_digitalorders.entities.*;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,7 +24,7 @@ public class DemandControllerImpl {
     }
 
     @GetMapping("/")
-    public List<Equipement> getAllDemandes() {
+    public List<Demande> getAllDemandes() {
         return demandeService.findAll();
     }
 
@@ -43,7 +42,7 @@ public class DemandControllerImpl {
 
 
     @GetMapping("/{id}")
-    public Equipement getDemandeById(@PathVariable Long id) {
+    public Demande getDemandeById(@PathVariable Long id) {
         return demandeService.findById(id);
     }
 
@@ -60,6 +59,11 @@ public class DemandControllerImpl {
     @DeleteMapping
     public void deleteDemande(@RequestBody Demande demande) {
         demandeService.delete(demande);
+    }
+
+    @PostMapping("/updateDemande/{id}")
+    public Devis updateDemande(@PathVariable Long id, @RequestBody DemandeStatus demandeStatus){
+        return demandeService.updateDemandeStatus(id,demandeStatus);
     }
 
     }

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface DemandeRepository extends JpaRepository <Equipement, Integer> {
+public interface DemandeRepository extends JpaRepository <Demande, Long> {
 
     public Demande save(Demande demande) ;
 

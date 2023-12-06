@@ -1,6 +1,8 @@
 package com.example.springrestful_digitalorders.Controllers;
 
+
 import com.example.springrestful_digitalorders.Repositories.ContractRepository;
+
 import com.example.springrestful_digitalorders.Repositories.DevisRepository;
 import com.example.springrestful_digitalorders.entities.Contract;
 import com.example.springrestful_digitalorders.entities.Devis;
@@ -22,7 +24,9 @@ import com.example.springrestful_digitalorders.Services.PdfGenerationService;
 public class PdfController {
 
     private final PdfGenerationService pdfGenerationService;
+
     private final ContractRepository contractRepository;
+
     private final DevisRepository devisRepository;
 
 

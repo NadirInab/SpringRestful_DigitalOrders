@@ -36,28 +36,22 @@ public class PdfGenerationService {
 
         return generatePdf(document -> {
             try {
-                // Add a professional header
-                Paragraph header = new Paragraph("Devis - Quotation");
-                document.add(header);
-
-                // Add a horizontal line for separation
-                document.add(new LineSeparator());
-
-                // Add details in a structured manner
                 document.add(new Paragraph("Devis ID: " + devis.getId()));
                 document.add(new Paragraph("Date of creation: " + devis.getDateCreation()));
                 document.add(new Paragraph("Date of expiration: " + devis.getDateExpiration()));
                 document.add(new Paragraph("Demande ID: " + devis.getDemande().getId()));
                 document.add(new Paragraph("Equipement: " + devis.getDemande().getEquipement().getName()));
 
-                // Add a line break
                 document.add(new Paragraph());
 
-                // Format total price
                 Paragraph totalPrice = new Paragraph("Total Price: $" + String.format("%.2f", priceAfter));
                 document.add(totalPrice);
 
-                // Add a footer
+                document.add(new Paragraph());
+
+                Paragraph totalPrice = new Paragraph("Total Price: $" + String.format("%.2f", priceAfter));
+                document.add(totalPrice);
+
                 Paragraph footer = new Paragraph("Thank you for choosing our services!");
                 document.add(footer);
 

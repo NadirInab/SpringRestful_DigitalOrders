@@ -21,7 +21,7 @@ public class DevisControllerImpl implements DevisController {
     private final DevisService devisService;
     private final DevisRepository devisRepository;
 
-    @PostMapping("/save")
+    /*@PostMapping("/save")
     public ResponseEntity<Devis> generateDevis(@RequestBody Devis devis){
         Devis devis1 = devisService.addDevis(devis);
 
@@ -30,6 +30,11 @@ public class DevisControllerImpl implements DevisController {
         } else {
             return  ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
+    }*/
+
+    @Override
+    public ResponseEntity<Devis> generateDevis(Devis devis) {
+        return null;
     }
 
     @GetMapping("/")

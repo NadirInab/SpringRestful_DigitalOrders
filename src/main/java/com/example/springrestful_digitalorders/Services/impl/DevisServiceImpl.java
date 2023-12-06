@@ -1,6 +1,7 @@
 package com.example.springrestful_digitalorders.Services.impl;
 
 import com.example.springrestful_digitalorders.Services.DevisService;
+import com.example.springrestful_digitalorders.entities.Demande;
 import com.example.springrestful_digitalorders.entities.DemandeStatus;
 import com.example.springrestful_digitalorders.entities.Devis;
 import com.example.springrestful_digitalorders.Repositories.DevisRepository;
@@ -17,11 +18,16 @@ public class DevisServiceImpl implements DevisService {
     private final DevisRepository devisRepository;
 
     @Override
-    public Devis addDevis(Devis devis) {
+    public Devis addDevis(Demande demande) {
 
-        if (devis.getDemande().getDemandeStatus() != DemandeStatus.ACCEPTED) {
+        if (demande.getDemandeStatus() != DemandeStatus.ACCEPTED) {
             throw new IllegalArgumentException("This request is not accepted");
+        } else if (demande.getDemandeStatus() != DemandeStatus.REJECTED) {
+            throw new IllegalArgumentException("This request is Rejected");
         }
+        Devis devis = new Devis();
+
+        devis.setDemande(demande);
         devis.setDevisStatus(DevisStatus.PENDDING);
 
         Date currentDate = Calendar.getInstance().getTime();
@@ -30,6 +36,9 @@ public class DevisServiceImpl implements DevisService {
         calendar.setTime(new Date());
         calendar.add(Calendar.HOUR_OF_DAY, 48);
 
+
+        devis.setIsArchived(false);
+        devis.setDiscount(0.0);
         devis.setDateCreation(currentDate);
         devis.setDateExpiration(calendar.getTime());
 
