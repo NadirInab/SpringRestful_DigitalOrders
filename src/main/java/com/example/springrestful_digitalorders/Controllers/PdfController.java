@@ -1,5 +1,8 @@
 package com.example.springrestful_digitalorders.Controllers;
 
+
+import com.example.springrestful_digitalorders.Repositories.ContractRepository;
+
 import com.example.springrestful_digitalorders.Repositories.DevisRepository;
 import com.example.springrestful_digitalorders.entities.Contract;
 import com.example.springrestful_digitalorders.entities.Devis;
@@ -21,12 +24,15 @@ import com.example.springrestful_digitalorders.Services.PdfGenerationService;
 public class PdfController {
 
     private final PdfGenerationService pdfGenerationService;
+
+    private final ContractRepository contractRepository;
+
     private final DevisRepository devisRepository;
 
 
     @GetMapping(value = "/contract/{id}", produces = MediaType.APPLICATION_PDF_VALUE)
     public ResponseEntity<byte[]> generateContractPdf(@PathVariable Long id) {
-        Contract contract = new Contract();
+        Contract contract = contractRepository.findById(id).orElseThrow(() -> new RuntimeException("Contract not found"));
         byte[] pdfBytes = pdfGenerationService.generateContractPdf(contract);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_PDF);
