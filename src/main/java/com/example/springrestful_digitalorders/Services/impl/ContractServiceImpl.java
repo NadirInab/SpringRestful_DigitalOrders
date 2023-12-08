@@ -3,6 +3,7 @@ package com.example.springrestful_digitalorders.Services.impl;
 import com.example.springrestful_digitalorders.Services.ContractService;
 import com.example.springrestful_digitalorders.entities.Contract;
 import com.example.springrestful_digitalorders.Repositories.ContractRepository;
+import com.example.springrestful_digitalorders.entities.Devis;
 import com.example.springrestful_digitalorders.entities.DevisStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -26,15 +27,19 @@ public class ContractServiceImpl implements ContractService {
     }
 
     @Override
-    public Contract save(Contract contract) {
-        System.out.println(contract.getDevis().getDevisStatus());
-        if (contract.getDevis().getDevisStatus().equals(DevisStatus.ACCEPTED)) {
-            return contractRepository.save(contract);
-        } else {
-            throw new RuntimeException("Devis not accepted");
+    public Contract save(Devis devis) {
+        if (devis.getDevisStatus() != DevisStatus.ACCEPTED) {
+            throw new IllegalArgumentException("This request is not accepted");
+        } else if (devis.getDevisStatus() != DevisStatus.REJECTED) {
+            throw new IllegalArgumentException("This request is Rejected");
         }
-    }
+        Contract contract = new Contract();
 
+        contract.setDevis(devis);
+        contract.setIsArchived(false);
+
+        return contractRepository.save(contract);
+    }
     @Override
     public void deleteById(Long id) {
         contractRepository.deleteById(id);
