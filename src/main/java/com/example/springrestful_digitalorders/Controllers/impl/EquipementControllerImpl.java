@@ -1,4 +1,4 @@
-package com.example.springrestful_digitalorders.Controllers;
+package com.example.springrestful_digitalorders.Controllers.impl;
 
 
 import com.example.springrestful_digitalorders.Services.EquipementService;
